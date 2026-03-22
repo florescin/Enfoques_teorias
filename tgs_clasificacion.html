@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TGS · Clasificación de sistemas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#0c1a2e;color:#fff;padding:36px 20px 60px}
+.wrapper{max-width:1200px;margin:0 auto}
+
+.header{text-align:center;margin-bottom:44px}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#7dd3fc;background:rgba(14,165,233,.15);padding:5px 16px;border-radius:20px;margin-bottom:14px;border:1px solid rgba(14,165,233,.25)}
+.header h1{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,44px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px}
+.header h1 span{color:#7dd3fc}
+.header p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.45);font-weight:300}
+
+/* CRITERIO TABS */
+.tabs{display:flex;gap:10px;justify-content:center;margin-bottom:36px;flex-wrap:wrap}
+.tab{
+  padding:10px 24px;border-radius:30px;font-size:13px;font-weight:500;cursor:pointer;
+  border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.55);transition:all .2s
+}
+.tab:hover{background:rgba(255,255,255,.08);color:#fff}
+.tab.active-c1{background:rgba(14,165,233,.2);border-color:rgba(14,165,233,.5);color:#7dd3fc}
+.tab.active-c2{background:rgba(124,58,237,.2);border-color:rgba(124,58,237,.5);color:#c4b5fd}
+.tab.active-c3{background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.5);color:#fcd34d}
+
+/* CRITERIO HEADER */
+.criterio-header{
+  border-radius:16px;padding:20px 28px;margin-bottom:28px;
+  display:flex;align-items:center;gap:16px;
+}
+.c1-bg{background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.25)}
+.c2-bg{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25)}
+.c3-bg{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25)}
+.criterio-icon{font-size:32px}
+.criterio-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.c1-bg .criterio-label{color:#7dd3fc}
+.c2-bg .criterio-label{color:#c4b5fd}
+.c3-bg .criterio-label{color:#fcd34d}
+.criterio-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff}
+
+/* CARDS GRID */
+.cards{display:grid;gap:18px}
+.cards-2{grid-template-columns:1fr 1fr}
+.cards-3{grid-template-columns:1fr 1fr 1fr}
+
+.card{
+  border-radius:16px;overflow:hidden;cursor:pointer;
+  border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);
+  transition:all .25s;
+}
+.card:hover{transform:translateY(-4px)}
+
+.card-top{padding:22px 22px 16px;position:relative}
+.card-num{position:absolute;top:14px;right:18px;font-family:'Playfair Display',serif;font-size:44px;font-weight:900;opacity:.12;color:#fff;line-height:1}
+.card-icon{font-size:28px;margin-bottom:10px}
+.card-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;line-height:1.2}
+.card-tag{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:2px 9px;border-radius:12px;margin-top:6px}
+
+/* c1 */
+.abierto .card-top{background:linear-gradient(135deg,rgba(14,165,233,.25),rgba(14,165,233,.08))}
+.abierto:hover{border-color:rgba(14,165,233,.5);box-shadow:0 10px 30px rgba(14,165,233,.18)}
+.abierto .card-tag{background:rgba(14,165,233,.2);color:#7dd3fc}
+.cerrado .card-top{background:linear-gradient(135deg,rgba(100,116,139,.25),rgba(100,116,139,.08))}
+.cerrado:hover{border-color:rgba(100,116,139,.5);box-shadow:0 10px 30px rgba(100,116,139,.15)}
+.cerrado .card-tag{background:rgba(100,116,139,.2);color:#cbd5e1}
+/* c2 */
+.estatico .card-top{background:linear-gradient(135deg,rgba(100,116,139,.2),rgba(100,116,139,.05))}
+.estatico:hover{border-color:rgba(100,116,139,.4)}
+.estatico .card-tag{background:rgba(100,116,139,.2);color:#cbd5e1}
+.dinamico .card-top{background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(124,58,237,.08))}
+.dinamico:hover{border-color:rgba(124,58,237,.5);box-shadow:0 10px 30px rgba(124,58,237,.2)}
+.dinamico .card-tag{background:rgba(124,58,237,.2);color:#c4b5fd}
+.homeostático .card-top{background:linear-gradient(135deg,rgba(16,185,129,.25),rgba(16,185,129,.08))}
+.homeostático:hover{border-color:rgba(16,185,129,.5);box-shadow:0 10px 30px rgba(16,185,129,.18)}
+.homeostático .card-tag{background:rgba(16,185,129,.2);color:#6ee7b7}
+/* c3 */
+.rigido .card-top{background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(245,158,11,.06))}
+.rigido:hover{border-color:rgba(245,158,11,.4);box-shadow:0 10px 30px rgba(245,158,11,.15)}
+.rigido .card-tag{background:rgba(245,158,11,.2);color:#fcd34d}
+.flexible .card-top{background:linear-gradient(135deg,rgba(251,113,133,.2),rgba(251,113,133,.06))}
+.flexible:hover{border-color:rgba(251,113,133,.4);box-shadow:0 10px 30px rgba(251,113,133,.15)}
+.flexible .card-tag{background:rgba(251,113,133,.2);color:#fda4af}
+
+.card-body{padding:18px 22px 22px;display:flex;flex-direction:column;gap:12px}
+.def-text{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
+.examples-title{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:2px}
+.example-item{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.45}
+.example-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px;background:rgba(255,255,255,.3)}
+
+/* NOTA BOX */
+.nota{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-left:3px solid;border-radius:0 12px 12px 0;padding:14px 18px;margin-top:8px;font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;font-style:italic}
+.nota-c1{border-left-color:#7dd3fc}
+.nota-c2{border-left-color:#c4b5fd}
+.nota-c3{border-left-color:#fcd34d}
+
+/* HIDDEN */
+.section{display:none}.section.visible{display:block}
+
+@media(max-width:700px){.cards-2,.cards-3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="tag">TGS · Unidad 1.2</div>
+    <h1>Clasificación de <span>sistemas</span></h1>
+    <p>Tres criterios para clasificar cualquier sistema. Seleccioná el criterio que querés explorar.</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active-c1" onclick="showCriterio(1)">🌐 Criterio 1 · Interacción con el medio</div>
+    <div class="tab" onclick="showCriterio(2)">⚡ Criterio 2 · Dinamismo</div>
+    <div class="tab" onclick="showCriterio(3)">🏗️ Criterio 3 · Estructura</div>
+  </div>
+
+  <!-- CRITERIO 1 -->
+  <div class="section visible" id="c1">
+    <div class="criterio-header c1-bg">
+      <div class="criterio-icon">🌐</div>
+      <div>
+        <div class="criterio-label">Criterio 1</div>
+        <div class="criterio-title">Según su interacción con el medio</div>
+      </div>
+    </div>
+    <div class="cards cards-2">
+      <div class="card abierto">
+        <div class="card-top">
+          <div class="card-num">1</div>
+          <div class="card-icon">🔓</div>
+          <div class="card-name">Sistema Abierto</div>
+          <div class="card-tag">El más común en la realidad</div>
+        </div>
+        <div class="card-body">
+          <p class="def-text">Se encuentra en relación con el medio circundante, intercambiando flujos de <strong>energía, materia o información</strong> con su entorno.</p>
+          <div class="examples-title">Ejemplos</div>
+          <div class="example-item"><div class="example-dot"></div><span>Una empresa (recibe insumos, produce y vende)</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>El cuerpo humano (respira, come, elimina desechos)</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Un aula (ingresa alumnos, egresa graduados)</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Un sistema de información (recibe datos, genera reportes)</span></div>
+        </div>
+      </div>
+      <div class="card cerrado">
+        <div class="card-top">
+          <div class="card-num">2</div>
+          <div class="card-icon">🔒</div>
+          <div class="card-name">Sistema Cerrado</div>
+          <div class="card-tag">Más teórico que real</div>
+        </div>
+        <div class="card-body">
+          <p class="def-text">Aislado por completo de su ambiente externo. No tiene mecanismos de recolección de insumos ni recursos del exterior.</p>
+          <div class="examples-title">Ejemplos y aclaración</div>
+          <div class="example-item"><div class="example-dot"></div><span>Las leyes de Newton (calculadas sin variables externas)</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Un sistema hipotético para simplificar el análisis matemático</span></div>
+          <div class="example-item"><div class="example-dot"></div><span><strong style="color:#e2e8f0">Importante:</strong> los sistemas cerrados prácticamente no existen. Son una ficción útil para el análisis.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="nota nota-c1">💡 <strong>Para el analista:</strong> todas las organizaciones son sistemas abiertos. Cuando delimitamos el "alcance" de un proyecto, operamos conceptualmente como si fuera cerrado para poder analizarlo — pero sabemos que en la realidad interactúa constantemente con su entorno.</div>
+  </div>
+
+  <!-- CRITERIO 2 -->
+  <div class="section" id="c2">
+    <div class="criterio-header c2-bg">
+      <div class="criterio-icon">⚡</div>
+      <div>
+        <div class="criterio-label">Criterio 2</div>
+        <div class="criterio-title">Según su dinamismo</div>
+      </div>
+    </div>
+    <div class="cards cards-3">
+      <div class="card estatico">
+        <div class="card-top">
+          <div class="card-num">1</div>
+          <div class="card-icon">🪨</div>
+          <div class="card-name">Sistema Estático</div>
+          <div class="card-tag">No reacciona al entorno</div>
+        </div>
+        <div class="card-body">
+          <p class="def-text">No reacciona ni se modifica con el influjo de su medio ambiente. Permanece igual independientemente de lo que ocurra a su alrededor.</p>
+          <div class="examples-title">Ejemplos</div>
+          <div class="example-item"><div class="example-dot"></div><span>Una roca</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Una estructura de hormigón</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Un archivo físico guardado</span></div>
+        </div>
+      </div>
+      <div class="card dinamico">
+        <div class="card-top">
+          <div class="card-num">2</div>
+          <div class="card-icon">🌀</div>
+          <div class="card-name">Sistema Dinámico</div>
+          <div class="card-tag">Evoluciona constantemente</div>
+        </div>
+        <div class="card-body">
+          <p class="def-text">Evoluciona constantemente debido a factores internos y externos. Cambia con el tiempo respondiendo a su entorno.</p>
+          <div class="examples-title">Ejemplos</div>
+          <div class="example-item"><div class="example-dot"></div><span>El mercado financiero</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Una empresa en crecimiento</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Un ecosistema natural</span></div>
+        </div>
+      </div>
+      <div class="card homeostático">
+        <div class="card-top">
+          <div class="card-num">3</div>
+          <div class="card-icon">⚖️</div>
+          <div class="card-name">Homeostático</div>
+          <div class="card-tag">Se autorregula</div>
+        </div>
+        <div class="card-body">
+          <p class="def-text">Contiene en sí mismo una capacidad de autorregulación. Tiende a mantener el equilibrio interno frente a cambios externos.</p>
+          <div class="examples-title">Ejemplos</div>
+          <div class="example-item"><div class="example-dot"></div><span>El cuerpo humano (temperatura, glucemia)</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Una empresa con control de gestión</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Un termostato</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="nota nota-c2">💡 <strong>Las organizaciones son sistemas dinámicos y homeostáticos:</strong> cambian con el entorno Y tienen mecanismos de control (función de Control del Proceso Administrativo) que les permiten autorregularse.</div>
+  </div>
+
+  <!-- CRITERIO 3 -->
+  <div class="section" id="c3">
+    <div class="criterio-header c3-bg">
+      <div class="criterio-icon">🏗️</div>
+      <div>
+        <div class="criterio-label">Criterio 3</div>
+        <div class="criterio-title">Según su estructura</div>
+      </div>
+    </div>
+    <div class="cards cards-2">
+      <div class="card rigido">
+        <div class="card-top">
+          <div class="card-num">1</div>
+          <div class="card-icon">🔩</div>
+          <div class="card-name">Sistema Rígido</div>
+          <div class="card-tag">Ciencias físicas · Predecible</div>
+        </div>
+        <div class="card-body">
+          <p class="def-text">Típico de las ciencias físicas. Se aplican técnicas del método científico clásico. Relaciones causales probadas, resultados replicables, predicciones con alto grado de seguridad.</p>
+          <div class="examples-title">Ejemplos</div>
+          <div class="example-item"><div class="example-dot"></div><span>Sistemas mecánicos (motor, reloj)</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Circuitos eléctricos</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Fórmulas físicas y matemáticas</span></div>
+        </div>
+      </div>
+      <div class="card flexible">
+        <div class="card-top">
+          <div class="card-num">2</div>
+          <div class="card-icon">🌱</div>
+          <div class="card-name">Sistema Flexible</div>
+          <div class="card-tag">Sistemas vivientes · Adaptable</div>
+        </div>
+        <div class="card-body">
+          <p class="def-text">Dotado con características conductuales. Son vivientes y sufren cambios cuando se enfrentan a su medio. No son completamente predecibles.</p>
+          <div class="examples-title">Ejemplos</div>
+          <div class="example-item"><div class="example-dot"></div><span>Los seres vivos (personas, animales)</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Las organizaciones (empresas, instituciones)</span></div>
+          <div class="example-item"><div class="example-dot"></div><span>Los sistemas sociales y económicos</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="nota nota-c3">💡 <strong>Para el analista:</strong> los sistemas de información que diseñamos deben ser FLEXIBLES — capaces de adaptarse a los cambios de la organización y su entorno. Un sistema rígido en un entorno dinámico se vuelve obsoleto rápidamente.</div>
+  </div>
+</div>
+
+<script>
+function showCriterio(n) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.getElementById('c'+n).classList.add('visible');
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.className = 'tab';
+    if(i+1===n) t.classList.add('active-c'+n);
+  });
+}
+</script>
+</body>
+</html>

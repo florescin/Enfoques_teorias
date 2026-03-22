@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TGS · Metasistema · Sistema · Subsistemas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#081c15;color:#fff;padding:36px 20px 60px}
+.wrapper{max-width:1200px;margin:0 auto}
+
+.header{text-align:center;margin-bottom:40px}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#6ee7b7;background:rgba(16,185,129,.15);padding:5px 16px;border-radius:20px;margin-bottom:14px;border:1px solid rgba(16,185,129,.25)}
+.header h1{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,44px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px}
+.header h1 span{color:#6ee7b7}
+.header p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.45);font-weight:300}
+
+/* MAIN LAYOUT */
+.main{display:grid;grid-template-columns:1fr 380px;gap:24px;margin-bottom:40px;align-items:start}
+
+/* CONCENTRIC DIAGRAM */
+.diagram-wrap{position:relative;aspect-ratio:1/1;max-width:520px;margin:0 auto;cursor:pointer;user-select:none}
+
+.ring{position:absolute;inset:0;border-radius:50%;border:2px dashed;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.ring-meta{background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.3)}
+.ring-meta:hover,.ring-meta.active{background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.7);box-shadow:0 0 40px rgba(16,185,129,.18)}
+.ring-sys{inset:16%;background:rgba(14,165,233,.08);border-color:rgba(14,165,233,.35);border-style:solid}
+.ring-sys:hover,.ring-sys.active{background:rgba(14,165,233,.16);border-color:rgba(14,165,233,.75);box-shadow:0 0 30px rgba(14,165,233,.2)}
+.ring-sub{inset:34%;background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.4);border-style:solid}
+.ring-sub:hover,.ring-sub.active{background:rgba(124,58,237,.2);border-color:rgba(124,58,237,.8);box-shadow:0 0 20px rgba(124,58,237,.25)}
+
+.ring-label{position:absolute;font-family:'Playfair Display',serif;font-weight:700;text-align:center;pointer-events:none;line-height:1.1}
+.label-meta{top:4%;left:50%;transform:translateX(-50%);font-size:13px;color:rgba(16,185,129,.8)}
+.label-sys{top:50%;left:50%;transform:translate(-50%,-50%);font-size:15px;color:#7dd3fc}
+.label-sub{top:50%;left:50%;transform:translate(-50%,-50%);font-size:13px;color:#c4b5fd;text-align:center}
+
+/* Satellite labels */
+.sat{position:absolute;font-size:10px;color:rgba(255,255,255,.4);text-align:center;pointer-events:none;line-height:1.3}
+.sat-tl{top:12%;left:4%}
+.sat-tr{top:12%;right:4%}
+.sat-bl{bottom:12%;left:4%}
+.sat-br{bottom:12%;right:4%}
+
+/* DETAIL SIDE PANEL */
+.side-panel{display:flex;flex-direction:column;gap:16px}
+
+.level-btn{
+  border-radius:14px;padding:18px 20px;cursor:pointer;border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);transition:all .2s;text-align:left;
+}
+.level-btn:hover{background:rgba(255,255,255,.08)}
+.level-btn.active-meta{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.45)}
+.level-btn.active-sys{background:rgba(14,165,233,.12);border-color:rgba(14,165,233,.45)}
+.level-btn.active-sub{background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.45)}
+.btn-icon{font-size:22px;margin-bottom:6px}
+.btn-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:3px}
+.btn-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.active-meta .btn-tag{color:#6ee7b7}
+.active-sys .btn-tag{color:#7dd3fc}
+.active-sub .btn-tag{color:#c4b5fd}
+
+/* DEFINITION AREA */
+.def-area{background:rgba(255,255,255,.04);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,.08);min-height:220px;transition:all .3s}
+.def-area.da-meta{border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.06)}
+.def-area.da-sys{border-color:rgba(14,165,233,.3);background:rgba(14,165,233,.06)}
+.def-area.da-sub{border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.06)}
+.da-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.da-meta .da-title{color:#6ee7b7}
+.da-sys .da-title{color:#7dd3fc}
+.da-sub .da-title{color:#c4b5fd}
+.da-def{font-size:13px;color:rgba(255,255,255,.7);line-height:1.65;margin-bottom:16px}
+.da-examples{display:flex;flex-direction:column;gap:8px}
+.da-ex{background:rgba(0,0,0,.2);border-radius:10px;padding:10px 14px;font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.5}
+.da-ex strong{color:#e2e8f0;display:block;font-size:11px;margin-bottom:2px}
+.placeholder-txt{color:rgba(255,255,255,.3);font-style:italic;font-size:13px;padding-top:16px;text-align:center}
+
+/* DEMARCACIÓN SECTION */
+.section-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:6px}
+.section-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:24px;line-height:1.6}
+
+.munecas{display:flex;align-items:flex-end;justify-content:center;gap:12px;margin-bottom:28px;padding:28px;background:rgba(255,255,255,.03);border-radius:16px;border:1px solid rgba(255,255,255,.07)}
+.muneca{display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .2s}
+.muneca:hover{transform:translateY(-6px)}
+.muneca-body{border-radius:50% 50% 40% 40%;display:flex;align-items:center;justify-content:center;transition:all .2s;position:relative;overflow:hidden}
+.muneca-body::after{content:'';position:absolute;inset:0;border-radius:inherit;border:2px solid rgba(255,255,255,.15)}
+.m1 .muneca-body{width:120px;height:144px;background:linear-gradient(160deg,#065f46,#059669)}
+.m2 .muneca-body{width:96px;height:116px;background:linear-gradient(160deg,#0e7490,#06b6d4)}
+.m3 .muneca-body{width:76px;height:92px;background:linear-gradient(160deg,#4c1d95,#7c3aed)}
+.m4 .muneca-body{width:54px;height:66px;background:linear-gradient(160deg,#92400e,#d97706)}
+.muneca-label{margin-top:10px;font-size:11px;font-weight:500;color:rgba(255,255,255,.6);text-align:center;max-width:100px;line-height:1.3}
+.muneca.active .muneca-label{color:#fff;font-weight:600}
+.m1.active .muneca-body{box-shadow:0 8px 28px rgba(5,150,105,.4)}
+.m2.active .muneca-body{box-shadow:0 8px 28px rgba(6,182,212,.4)}
+.m3.active .muneca-body{box-shadow:0 8px 28px rgba(124,58,237,.4)}
+.m4.active .muneca-body{box-shadow:0 8px 28px rgba(217,119,6,.4)}
+.muneca-icon{font-size:28px}
+
+.demarc-panel{background:rgba(255,255,255,.04);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,.08);min-height:160px;transition:all .3s}
+.dp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.dp-col{border-radius:12px;padding:14px 16px}
+.dp-meta{background:rgba(5,150,105,.12);border:1px solid rgba(5,150,105,.25)}
+.dp-sys{background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.25)}
+.dp-sub{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25)}
+.dp-col-label{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.dp-meta .dp-col-label{color:#6ee7b7}
+.dp-sys .dp-col-label{color:#7dd3fc}
+.dp-sub .dp-col-label{color:#c4b5fd}
+.dp-col-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:6px}
+.dp-col-text{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5}
+
+.nota{background:rgba(6,182,212,.08);border-left:3px solid #0891b2;border-radius:0 12px 12px 0;padding:14px 18px;font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;font-style:italic;margin-top:16px}
+
+@media(max-width:900px){.main{grid-template-columns:1fr}.diagram-wrap{max-width:360px}.dp-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="tag">TGS · Unidad 1.2</div>
+    <h1>Metasistema · Sistema · <span>Subsistemas</span></h1>
+    <p>Hacé clic en los niveles del diagrama o en los botones para explorar cada concepto</p>
+  </div>
+
+  <div class="main">
+    <!-- CONCENTRIC DIAGRAM -->
+    <div>
+      <div class="diagram-wrap" id="diag">
+        <div class="ring ring-meta" onclick="showLevel('meta')" id="r-meta">
+          <div class="ring ring-sys" onclick="showLevel('sys');event.stopPropagation()" id="r-sys">
+            <div class="ring ring-sub" onclick="showLevel('sub');event.stopPropagation()" id="r-sub">
+            </div>
+          </div>
+        </div>
+        <div class="ring-label label-meta" id="lbl-meta">METASISTEMA<br><small style="font-size:10px;opacity:.7">Entorno / Ambiente</small></div>
+        <div class="ring-label label-sys" id="lbl-sys" style="top:28%;font-size:13px;color:rgba(125,211,252,.7)">Sistema<br>bajo análisis</div>
+        <div class="ring-label label-sub" id="lbl-sub">Sub<br>sistemas</div>
+        <div class="sat sat-tl">Competidores<br>Proveedores</div>
+        <div class="sat sat-tr">Clientes<br>Regulaciones</div>
+        <div class="sat sat-bl">Situación<br>económica</div>
+        <div class="sat sat-br">Tecnología<br>entorno</div>
+      </div>
+    </div>
+
+    <!-- SIDE PANEL -->
+    <div class="side-panel">
+      <div class="level-btn" id="btn-meta" onclick="showLevel('meta')">
+        <div class="btn-icon">🌍</div>
+        <div class="btn-name">Metasistema</div>
+        <div class="btn-tag">Entorno · Ambiente</div>
+      </div>
+      <div class="level-btn" id="btn-sys" onclick="showLevel('sys')">
+        <div class="btn-icon">🏢</div>
+        <div class="btn-name">Sistema bajo análisis</div>
+        <div class="btn-tag">El objeto de estudio</div>
+      </div>
+      <div class="level-btn" id="btn-sub" onclick="showLevel('sub')">
+        <div class="btn-icon">🔧</div>
+        <div class="btn-name">Subsistemas</div>
+        <div class="btn-tag">Partes del sistema</div>
+      </div>
+      <div class="def-area" id="def-area">
+        <p class="placeholder-txt">👆 Seleccioná un nivel del diagrama para ver su definición y ejemplos</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEMARCACIÓN -->
+  <div class="section-title">Demarcación de sistemas</div>
+  <p class="section-sub">Demarcar un sistema es el <strong>primer paso de todo análisis</strong>. Según el foco del analista, el mismo elemento puede ser sistema, metasistema o subsistema. Hacé clic en cada muñeca para ver cómo cambia el foco.</p>
+
+  <div class="munecas">
+    <div class="muneca m1" onclick="showMuneca(1)">
+      <div class="muneca-body"><div class="muneca-icon">🏭</div></div>
+      <div class="muneca-label">Empresa<br>completa</div>
+    </div>
+    <div class="muneca m2" onclick="showMuneca(2)">
+      <div class="muneca-body"><div class="muneca-icon">📊</div></div>
+      <div class="muneca-label">Área de<br>Administración</div>
+    </div>
+    <div class="muneca m3" onclick="showMuneca(3)">
+      <div class="muneca-body"><div class="muneca-icon">💻</div></div>
+      <div class="muneca-label">Sistema de<br>Información</div>
+    </div>
+    <div class="muneca m4" onclick="showMuneca(4)">
+      <div class="muneca-body"><div class="muneca-icon">📋</div></div>
+      <div class="muneca-label">Módulo de<br>Facturación</div>
+    </div>
+  </div>
+
+  <div class="demarc-panel" id="demarc-panel">
+    <p style="color:rgba(255,255,255,.35);font-style:italic;font-size:13px;text-align:center;padding:20px">👆 Hacé clic en una muñeca para ver cómo cambia el sistema bajo análisis</p>
+  </div>
+
+  <div class="nota">💡 <strong>La demarcación es completamente arbitraria</strong> y depende de los objetivos del estudio. El analista decide dónde trazar la línea. Dos profesionales pueden ver el mismo elemento como "sistema" o "subsistema" — y ambos tienen razón si sus objetivos de análisis son distintos.</div>
+
+</div>
+
+<script>
+const levels = {
+  meta: {
+    title: 'Metasistema',
+    def: 'Es todo aquello con lo que el sistema bajo análisis tiene algún tipo de relación de intercambio de energía, materia o información. También podemos llamarlo entorno o ambiente.',
+    examples: [
+      { label: 'Para una empresa', text: 'Clientes, proveedores, competidores, organismos del Estado, sindicatos, situación económica del país.' },
+      { label: 'Para un sistema de información', text: 'Los usuarios, otros sistemas con los que intercambia datos, la infraestructura tecnológica externa.' },
+      { label: 'Cómo identificarlo', text: 'Si el sistema tiene algún intercambio (datos, dinero, personas, información) con un elemento externo, ese elemento es parte de su metasistema.' },
+    ]
+  },
+  sys: {
+    title: 'Sistema bajo análisis',
+    def: 'Es el sistema sobre el que concentramos nuestra atención en un momento dado. Es nuestro objeto de estudio. Todo lo que está dentro de su límite le pertenece; todo lo de fuera es metasistema.',
+    examples: [
+      { label: 'Depende del foco', text: 'La misma empresa puede ser el "sistema" para un estudio organizacional, o ser un "subsistema" si estamos analizando el sector económico completo.' },
+      { label: 'Para el analista', text: 'El sistema de información que tenemos que analizar, diseñar o mejorar. Hay que delimitarlo bien antes de empezar.' },
+      { label: 'Clave profesional', text: 'Sin un sistema bien demarcado, no se puede presupuestar un proyecto de software. Los conflictos con clientes casi siempre vienen de límites mal definidos.' },
+    ]
+  },
+  sub: {
+    title: 'Subsistemas',
+    def: 'Un subsistema es un conjunto de partes e interrelaciones que se encuentra estructural y funcionalmente dentro de un sistema mayor, y que posee sus propias características y propiedades emergentes.',
+    examples: [
+      { label: 'Regla clave', text: 'Un elemento es subsistema SI Y SOLO SI puede cumplir de forma autónoma con la definición de sistema.' },
+      { label: 'Ejemplo en empresa', text: 'El área de RRHH, el área de Producción, el área de Ventas — cada una es un subsistema de la empresa.' },
+      { label: 'Recursividad', text: 'Un subsistema puede ser analizado, a su vez, como sistema. Y así infinitamente. La jerarquía depende del foco del analista.' },
+    ]
+  }
+};
+
+const munecas = {
+  1: {
+    meta: { title: 'Sector industrial', text: 'Competidores del rubro, organismos reguladores, tendencias del mercado, situación macroeconómica.' },
+    sys:  { title: 'Empresa completa', text: 'Todo lo que ocurre dentro de la empresa: sus áreas, procesos, recursos, personas y sistemas.' },
+    sub:  { title: 'Áreas funcionales', text: 'RRHH, Producción, Ventas, Administración, IT — cada área es un subsistema de la empresa.' }
+  },
+  2: {
+    meta: { title: 'La empresa completa', text: 'Las demás áreas de la empresa que interactúan con Administración: Producción, Ventas, RRHH, Dirección.' },
+    sys:  { title: 'Área de Administración', text: 'Los procesos, personas y sistemas que conforman el área administrativa de la organización.' },
+    sub:  { title: 'Procesos administrativos', text: 'Planeación, organización, dirección y control — cada función es un subsistema del área.' }
+  },
+  3: {
+    meta: { title: 'Área de Administración', text: 'Los usuarios del sistema, los demás sistemas de la empresa con los que intercambia datos, la infraestructura IT.' },
+    sys:  { title: 'Sistema de Información', text: 'El sistema de información que analiza el técnico: sus módulos, base de datos, interfaces y procesos.' },
+    sub:  { title: 'Módulos del sistema', text: 'Módulo de facturación, módulo de stock, módulo de RRHH, módulo de reportes — cada uno es un subsistema.' }
+  },
+  4: {
+    meta: { title: 'Sistema de Información', text: 'Los demás módulos del sistema de información con los que el módulo de facturación intercambia datos.' },
+    sys:  { title: 'Módulo de Facturación', text: 'El módulo específico que estamos analizando: sus pantallas, procesos, reglas de negocio y base de datos propia.' },
+    sub:  { title: 'Funcionalidades', text: 'Alta de factura, anulación, consulta de facturas, generación de remitos — cada funcionalidad es un subsistema.' }
+  }
+};
+
+function showLevel(key) {
+  const d = levels[key];
+  document.querySelectorAll('.ring').forEach(r => r.classList.remove('active'));
+  document.querySelectorAll('.level-btn').forEach(b => b.className = 'level-btn');
+  document.getElementById('r-'+key).classList.add('active');
+  document.getElementById('btn-'+key).classList.add('active-'+key);
+  const area = document.getElementById('def-area');
+  area.className = 'def-area da-'+key;
+  area.innerHTML = `
+    <div class="da-title">${d.title}</div>
+    <p class="da-def">${d.def}</p>
+    <div class="da-examples">
+      ${d.examples.map(e => `<div class="da-ex"><strong>${e.label}</strong>${e.text}</div>`).join('')}
+    </div>
+  `;
+}
+
+function showMuneca(n) {
+  document.querySelectorAll('.muneca').forEach(m => m.classList.remove('active'));
+  document.querySelector('.m'+n).classList.add('active');
+  const m = munecas[n];
+  const names = ['Empresa completa','Área de Administración','Sistema de Información','Módulo de Facturación'];
+  document.getElementById('demarc-panel').innerHTML = `
+    <p style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;font-weight:600">Sistema bajo análisis: <span style="color:#fff">${names[n-1]}</span></p>
+    <div class="dp-grid">
+      <div class="dp-col dp-meta"><div class="dp-col-label">Metasistema</div><div class="dp-col-title">${m.meta.title}</div><div class="dp-col-text">${m.meta.text}</div></div>
+      <div class="dp-col dp-sys"><div class="dp-col-label">Sistema bajo análisis</div><div class="dp-col-title">${m.sys.title}</div><div class="dp-col-text">${m.sys.text}</div></div>
+      <div class="dp-col dp-sub"><div class="dp-col-label">Subsistemas</div><div class="dp-col-title">${m.sub.title}</div><div class="dp-col-text">${m.sub.text}</div></div>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>

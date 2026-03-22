@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TGS · ¿Qué es un sistema?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#0f0a2e;color:#fff;min-height:100vh;padding:36px 20px 60px}
+.wrapper{max-width:1200px;margin:0 auto}
+
+.header{text-align:center;margin-bottom:44px}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#a78bfa;background:rgba(124,58,237,.2);padding:5px 16px;border-radius:20px;margin-bottom:14px;border:1px solid rgba(124,58,237,.3)}
+.header h1{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,46px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px}
+.header h1 span{color:#a78bfa}
+.header p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.5);font-weight:300}
+
+/* FLOW DIAGRAM */
+.flow{display:flex;align-items:stretch;justify-content:center;gap:0;margin-bottom:44px;position:relative}
+.flow-node{
+  flex:1;max-width:220px;background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);border-radius:16px;
+  padding:24px 16px 20px;cursor:pointer;transition:all .25s;
+  position:relative;text-align:center;
+}
+.flow-node:hover,.flow-node.active{
+  background:rgba(124,58,237,.18);border-color:rgba(124,58,237,.6);
+  transform:translateY(-4px);box-shadow:0 12px 32px rgba(124,58,237,.25)
+}
+.flow-node.n-entrada:hover,.flow-node.n-entrada.active{background:rgba(14,165,233,.15);border-color:rgba(14,165,233,.5);box-shadow:0 12px 32px rgba(14,165,233,.2)}
+.flow-node.n-proceso:hover,.flow-node.n-proceso.active{background:rgba(124,58,237,.2);border-color:rgba(124,58,237,.6);box-shadow:0 12px 32px rgba(124,58,237,.25)}
+.flow-node.n-salida:hover,.flow-node.n-salida.active{background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.5);box-shadow:0 12px 32px rgba(16,185,129,.2)}
+.flow-node.n-retro:hover,.flow-node.n-retro.active{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.5);box-shadow:0 12px 32px rgba(245,158,11,.2)}
+
+.flow-arrow{display:flex;align-items:center;padding:0 6px;color:rgba(255,255,255,.25);font-size:22px;flex-shrink:0}
+
+.node-icon{font-size:30px;margin-bottom:10px}
+.node-label{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:6px}
+.node-sublabel{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:1px;text-transform:uppercase}
+
+/* color dots */
+.n-entrada .node-label{color:#7dd3fc}
+.n-proceso .node-label{color:#c4b5fd}
+.n-salida .node-label{color:#6ee7b7}
+.n-retro .node-label{color:#fcd34d}
+
+/* RETRO arrow bottom */
+.retro-arrow{
+  width:calc(100% - 80px);margin:0 auto 8px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  position:relative;
+}
+.retro-line{flex:1;height:2px;background:linear-gradient(90deg,rgba(245,158,11,.6),rgba(245,158,11,.1))}
+.retro-line.right{background:linear-gradient(90deg,rgba(245,158,11,.1),rgba(245,158,11,.6))}
+.retro-text{font-size:10px;color:rgba(245,158,11,.7);letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+
+/* DETAIL PANEL */
+.detail-panel{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;padding:32px 36px;margin-bottom:44px;
+  min-height:200px;transition:all .3s;
+}
+.detail-panel.show-entrada{border-color:rgba(14,165,233,.4);background:rgba(14,165,233,.07)}
+.detail-panel.show-proceso{border-color:rgba(124,58,237,.4);background:rgba(124,58,237,.07)}
+.detail-panel.show-salida{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.07)}
+.detail-panel.show-retro{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.07)}
+
+.detail-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px}
+.show-entrada .detail-title{color:#7dd3fc}
+.show-proceso .detail-title{color:#c4b5fd}
+.show-salida .detail-title{color:#6ee7b7}
+.show-retro .detail-title{color:#fcd34d}
+
+.detail-def{font-size:14px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:20px}
+.examples-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ex-card{background:rgba(0,0,0,.2);border-radius:12px;padding:16px 18px}
+.ex-card-label{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px}
+.ex-card-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:4px}
+.ex-card-text{font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.5}
+
+.placeholder{text-align:center;padding:40px;color:rgba(255,255,255,.3);font-size:14px;font-style:italic}
+.placeholder span{font-size:28px;display:block;margin-bottom:10px}
+
+/* DEFINITION BOX */
+.def-box{
+  background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);
+  border-radius:16px;padding:24px 28px;text-align:center;
+}
+.def-box p{font-size:14px;color:rgba(255,255,255,.8);line-height:1.7}
+.def-box strong{color:#c4b5fd}
+
+@media(max-width:700px){
+  .flow{flex-direction:column;align-items:center;gap:8px}
+  .flow-arrow{transform:rotate(90deg)}
+  .examples-grid{grid-template-columns:1fr}
+  .flow-node{max-width:100%;width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <div class="tag">TGS · Unidad 1.2</div>
+    <h1>¿Qué es un <span>sistema</span>?</h1>
+    <p>Hacé clic en cada componente del diagrama para explorar su definición y ejemplos</p>
+  </div>
+
+  <!-- FLOW DIAGRAM -->
+  <div class="flow">
+    <div class="flow-node n-entrada" onclick="show('entrada')">
+      <div class="node-icon">📥</div>
+      <div class="node-label">Entradas</div>
+      <div class="node-sublabel">Insumos</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node n-proceso" onclick="show('proceso')">
+      <div class="node-icon">⚙️</div>
+      <div class="node-label">Proceso</div>
+      <div class="node-sublabel">Transformación</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node n-salida" onclick="show('salida')">
+      <div class="node-icon">📤</div>
+      <div class="node-label">Salidas</div>
+      <div class="node-sublabel">Productos / Servicios</div>
+    </div>
+  </div>
+
+  <div class="retro-arrow" style="margin-top:-28px;margin-bottom:24px">
+    <div class="retro-line"></div>
+    <div class="flow-node n-retro" onclick="show('retro')" style="max-width:200px;padding:14px 16px;margin:0 8px">
+      <div class="node-icon" style="font-size:22px;margin-bottom:6px">🔄</div>
+      <div class="node-label" style="font-size:14px">Retroalimentación</div>
+    </div>
+    <div class="retro-line right"></div>
+  </div>
+
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel" id="detail">
+    <div class="placeholder"><span>👆</span>Seleccioná un componente del diagrama para ver su definición y ejemplos</div>
+  </div>
+
+  <!-- DEFINITION -->
+  <div class="def-box">
+    <p>Un sistema es <strong>"un conjunto de elementos interrelacionados entre sí que, a través de la utilización de recursos, procesa entradas (insumos) para convertirlos en salidas (productos, servicios y desechos) buscando un objetivo"</strong>.</p>
+  </div>
+</div>
+
+<script>
+const data = {
+  entrada: {
+    cls: 'show-entrada',
+    title: 'Entradas / Insumos',
+    def: 'Todo lo que el sistema incorpora desde su entorno (metasistema) para iniciar el proceso de transformación. Las entradas son los "ingredientes" del sistema.',
+    examples: [
+      { label: 'Ejemplo cotidiano', title: 'Cocina familiar', text: 'Ingredientes, recetas, tiempo, energía eléctrica y gas.' },
+      { label: 'Ejemplo organizacional', title: 'Empresa industrial', text: 'Materias primas, capital, personal, información de mercado, energía.' },
+      { label: 'Ejemplo académico', title: 'Sistema universitario', text: 'Alumnos ingresantes, docentes, bibliografía, infraestructura.' },
+      { label: 'Para el analista', title: 'Sistema de información', text: 'Datos crudos, formularios, transacciones, documentos de origen.' },
+    ]
+  },
+  proceso: {
+    cls: 'show-proceso',
+    title: 'Proceso / Transformación',
+    def: 'Las actividades que convierten las entradas en salidas. Es el corazón del sistema. Aquí ocurre la transformación que agrega valor. Sin proceso no hay sistema.',
+    examples: [
+      { label: 'Ejemplo cotidiano', title: 'Cocinar', text: 'Preparar, mezclar, aplicar calor y transformar ingredientes en un plato.' },
+      { label: 'Ejemplo organizacional', title: 'Producción industrial', text: 'Cortar, ensamblar, pintar, controlar calidad y empaquetar.' },
+      { label: 'Ejemplo académico', title: 'Proceso educativo', text: 'Clases, prácticos, evaluaciones, tutorías y formación integral.' },
+      { label: 'Para el analista', title: 'Procesamiento de datos', text: 'Captura, validación, cálculo, almacenamiento y consulta de información.' },
+    ]
+  },
+  salida: {
+    cls: 'show-salida',
+    title: 'Salidas / Productos',
+    def: 'Los resultados del proceso: productos, servicios o desechos que el sistema devuelve a su entorno (metasistema). Las salidas son la razón de ser del sistema.',
+    examples: [
+      { label: 'Ejemplo cotidiano', title: 'El plato terminado', text: 'La comida servida, el aroma, los residuos de cocina.' },
+      { label: 'Ejemplo organizacional', title: 'Empresa industrial', text: 'Productos terminados, servicios prestados, residuos y emisiones.' },
+      { label: 'Ejemplo académico', title: 'Sistema universitario', text: 'Profesionales graduados, conocimiento generado, investigaciones.' },
+      { label: 'Para el analista', title: 'Sistema de información', text: 'Reportes, pantallas, consultas, decisiones informadas.' },
+    ]
+  },
+  retro: {
+    cls: 'show-retro',
+    title: 'Retroalimentación',
+    def: 'Información que vuelve al sistema desde su entorno para que pueda responder a la pregunta: ¿Lo estamos haciendo bien? Permite la autorregulación y la mejora continua. Sin retroalimentación, el sistema es ciego.',
+    examples: [
+      { label: 'Ejemplo cotidiano', title: 'El sabor del plato', text: 'Si el comensal dice que está salado, ajustás la receta la próxima vez.' },
+      { label: 'Ejemplo organizacional', title: 'Empresa', text: 'Ventas, encuestas de satisfacción, devoluciones, reclamos, indicadores.' },
+      { label: 'Conexión con PA', title: 'Función de Control', text: 'En el proceso administrativo, la función de Control ES la retroalimentación del sistema organizacional.' },
+      { label: 'Para el analista', title: 'Sistema de información', text: 'Logs de errores, métricas de uso, feedback del usuario, auditorías.' },
+    ]
+  }
+};
+
+function show(key) {
+  const d = data[key];
+  const panel = document.getElementById('detail');
+  document.querySelectorAll('.flow-node').forEach(n => n.classList.remove('active'));
+  document.querySelector('.n-'+key).classList.add('active');
+  panel.className = 'detail-panel ' + d.cls;
+  panel.innerHTML = `
+    <div class="detail-title">${d.title}</div>
+    <p class="detail-def">${d.def}</p>
+    <div class="examples-grid">
+      ${d.examples.map(e => `
+        <div class="ex-card">
+          <div class="ex-card-label">${e.label}</div>
+          <div class="ex-card-title">${e.title}</div>
+          <div class="ex-card-text">${e.text}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
