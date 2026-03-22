@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enfoque Moderno</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0c2340;
+    --accent: #0ea5e9;
+    --accent2: #7dd3fc;
+    --pill-bg: rgba(14,165,233,.3);
+    --pill-text: #bae6fd;
+    --tag-bg: #e0f2fe;
+    --tag-text: #0369a1;
+    --example-border: #0ea5e9;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: #e8f4fd; padding: 36px 20px; }
+  .wrapper { max-width: 1380px; margin: 0 auto; }
+
+  .header { text-align: center; margin-bottom: 48px; }
+  .header::before { content:''; display:block; width:100px; height:4px; background:linear-gradient(90deg,#0369a1,#0ea5e9); margin:0 auto 18px; border-radius:2px; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,50px); font-weight:900; color:#0c2340; letter-spacing:-1px; line-height:1.1; }
+  .header h1 span { background:linear-gradient(135deg,#0369a1,#38bdf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .header p { margin-top:10px; font-size:15px; color:#64748b; font-weight:300; }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; }
+
+  .card { border-radius:18px; overflow:hidden; box-shadow:0 4px 24px rgba(14,165,233,.1); display:flex; flex-direction:column; background:#fff; transition:transform .2s,box-shadow .2s; }
+  .card:hover { transform:translateY(-5px); box-shadow:0 14px 40px rgba(14,165,233,.2); }
+
+  .card-header { padding:22px 22px 16px; background:var(--bg); }
+  .foco-pill { display:inline-block; font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; padding:3px 11px; border-radius:20px; margin-bottom:10px; background:var(--pill-bg); color:var(--pill-text); }
+  .card-header h2 { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:#fff; line-height:1.25; }
+  .rep { font-size:10.5px; color:rgba(255,255,255,.5); margin-top:6px; font-weight:300; }
+
+  .card-body { padding:18px 20px 22px; display:flex; flex-direction:column; gap:14px; flex:1; }
+  .st { font-size:9px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:#94a3b8; margin-bottom:3px; }
+  .st-a { color:var(--accent); }
+  .body-text { font-size:12.5px; color:#334155; line-height:1.55; }
+  .tags { display:flex; flex-wrap:wrap; gap:5px; }
+  .tag { font-size:10.5px; padding:3px 10px; border-radius:20px; background:var(--tag-bg); color:var(--tag-text); font-weight:500; }
+  .ex { background:#f0f9ff; border-left:3px solid var(--example-border); border-radius:0 8px 8px 0; padding:9px 12px; font-size:11.5px; color:#475569; line-height:1.5; font-style:italic; }
+
+  .footer { text-align:center; font-size:11px; color:#94a3b8; letter-spacing:1px; margin-top:48px; padding-top:16px; border-top:1px solid #e2e8f0; }
+
+  @media(max-width:600px){ .grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <h1>Enfoque <span>Moderno</span></h1>
+    <p>Teorías contemporáneas del pensamiento administrativo</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Cultura / Mejores prácticas</div>
+        <h2>Excelencia Empresarial</h2>
+        <div class="rep">T. Peters · R. Waterman · J. Collins</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Búsqueda de mejores prácticas</span><span class="tag">Cultura organizacional sólida</span><span class="tag">Orientación al cliente</span><span class="tag">Liderazgo transformador</span><span class="tag">Innovación permanente</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Identificación de factores de éxito empresarial · Concepto de empresa de excelencia · Influencia en la gestión de cultura organizacional</div>
+        </div>
+        <div class="ex">Apple y Google: reconocidas por cultura innovadora, orientación al cliente y liderazgo inspirador</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Calidad / Cliente</div>
+        <h2>Administración de la Calidad (TQM)</h2>
+        <div class="rep">E. Deming · J. Juran · K. Ishikawa · P. Crosby</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Mejora continua (Kaizen)</span><span class="tag">Cero defectos</span><span class="tag">Six Sigma</span><span class="tag">Normas ISO</span><span class="tag">Círculos de calidad</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">TQM · Normas ISO internacionales · Six Sigma · Just in Time · Herramientas de control estadístico de calidad</div>
+        </div>
+        <div class="ex">Empresas ISO 9001, plantas automotrices con Six Sigma, servicios de salud con protocolos de calidad estandarizados</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Procesos / Tecnología</div>
+        <h2>Reingeniería</h2>
+        <div class="rep">M. Hammer · J. Champy</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Rediseño radical de procesos</span><span class="tag">Ruptura con lo establecido</span><span class="tag">Uso intensivo de tecnología</span><span class="tag">Reestructuración desde cero</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">BPR (rediseño de procesos de negocio) · Foco en procesos más que en funciones · Base para la transformación digital</div>
+        </div>
+        <div class="ex">Bancos que rediseñaron completamente sus procesos con plataformas digitales (home banking, onboarding online)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Comparación / Mejora</div>
+        <h2>Benchmarking</h2>
+        <div class="rep">R. Camp · D. Watson</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Comparación sistemática</span><span class="tag">Aprendizaje de líderes del sector</span><span class="tag">Mejora continua por referentes</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Metodología de comparación y aprendizaje organizacional · Identificación de brechas de desempeño · Base para la mejora competitiva</div>
+        </div>
+        <div class="ex">Empresas de retail que analizan y adoptan prácticas de logística y experiencia de cliente de Amazon o Mercado Libre</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Servicio / Cliente</div>
+        <h2>Gerencia del Servicio</h2>
+        <div class="rep">K. Albrecht · J. Carlzon · R. Zemke</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Momentos de verdad</span><span class="tag">Triángulo del servicio</span><span class="tag">Cultura del cliente</span><span class="tag">Cliente interno y externo</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Modelo del triángulo del servicio · Concepto de momentos de verdad · Cultura organizacional orientada al cliente</div>
+        </div>
+        <div class="ex">Aerolíneas, hoteles y telecomunicaciones con programas de fidelización y estándares de atención al cliente</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Eficiencia / Foco estratégico</div>
+        <h2>Outsourcing</h2>
+        <div class="rep">P. Drucker · M. Hammer</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Tercerización estratégica</span><span class="tag">Core business</span><span class="tag">Reducción de costos</span><span class="tag">Alianzas con proveedores</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Concepto de core business · Gestión estratégica de proveedores · Flexibilidad organizacional · Cadenas de valor extendidas</div>
+        </div>
+        <div class="ex">Apple-Foxconn: tercerización de manufactura; empresas que externalizan soporte técnico o servicios de RRHH</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Complejidad / Aprendizaje</div>
+        <h2>Pensamiento Complejo en la Administración</h2>
+        <div class="rep">E. Morin · P. Senge · I. Prigogine</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Sistemas complejos no lineales</span><span class="tag">Aprendizaje organizacional</span><span class="tag">Pensamiento sistémico</span><span class="tag">Interrelación de variables</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">La quinta disciplina (Senge) · Organizaciones que aprenden (learning organizations) · Gestión de la complejidad e incertidumbre</div>
+        </div>
+        <div class="ex">Organizaciones con comunidades de práctica, aprendizaje colaborativo y gestión del conocimiento</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Sustentabilidad / Ambiente</div>
+        <h2>Proyecto ZERI</h2>
+        <div class="rep">G. Pauli · E. Scholz</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Enfoque ambiental</span><span class="tag">Eliminación de residuos</span><span class="tag">Producción limpia</span><span class="tag">Responsabilidad social y ambiental</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Administración sustentable · Modelo de empresa de emisiones cero · Base para la gestión ambiental empresarial</div>
+        </div>
+        <div class="ex">Empresas con certificaciones ambientales, políticas de economía circular, producción limpia o carbono neutro</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">Síntesis del Pensamiento Administrativo — Enfoque Moderno</div>
+</div>
+</body>
+</html>

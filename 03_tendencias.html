@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tendencias del Pensamiento Administrativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0c3a52;
+    --accent: #0891b2;
+    --accent2: #67e8f9;
+    --pill-bg: rgba(8,145,178,.35);
+    --pill-text: #cffafe;
+    --tag-bg: #e0f7fa;
+    --tag-text: #0e7490;
+    --example-border: #06b6d4;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: #e0f7fa; padding: 36px 20px; }
+  .wrapper { max-width: 1380px; margin: 0 auto; }
+
+  .header { text-align: center; margin-bottom: 48px; }
+  .header::before { content:''; display:block; width:100px; height:4px; background:linear-gradient(90deg,#0e7490,#67e8f9); margin:0 auto 18px; border-radius:2px; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,50px); font-weight:900; color:#0c3a52; letter-spacing:-1px; line-height:1.1; }
+  .header h1 span { background:linear-gradient(135deg,#0e7490,#67e8f9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .header p { margin-top:10px; font-size:15px; color:#64748b; font-weight:300; }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; }
+
+  .card { border-radius:18px; overflow:hidden; box-shadow:0 4px 24px rgba(8,145,178,.12); display:flex; flex-direction:column; background:#fff; transition:transform .2s,box-shadow .2s; }
+  .card:hover { transform:translateY(-5px); box-shadow:0 14px 40px rgba(8,145,178,.22); }
+
+  .card-header { padding:22px 22px 16px; background:var(--bg); }
+  .foco-pill { display:inline-block; font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; padding:3px 11px; border-radius:20px; margin-bottom:10px; background:var(--pill-bg); color:var(--pill-text); }
+  .card-header h2 { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:#fff; line-height:1.25; }
+  .rep { font-size:10.5px; color:rgba(255,255,255,.5); margin-top:6px; font-weight:300; }
+
+  .card-body { padding:18px 20px 22px; display:flex; flex-direction:column; gap:14px; flex:1; }
+  .st { font-size:9px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:#94a3b8; margin-bottom:3px; }
+  .st-a { color:var(--accent); }
+  .body-text { font-size:12.5px; color:#334155; line-height:1.55; }
+  .tags { display:flex; flex-wrap:wrap; gap:5px; }
+  .tag { font-size:10.5px; padding:3px 10px; border-radius:20px; background:var(--tag-bg); color:var(--tag-text); font-weight:500; }
+  .ex { background:#ecfeff; border-left:3px solid var(--example-border); border-radius:0 8px 8px 0; padding:9px 12px; font-size:11.5px; color:#475569; line-height:1.5; font-style:italic; }
+
+  .footer { text-align:center; font-size:11px; color:#94a3b8; letter-spacing:1px; margin-top:48px; padding-top:16px; border-top:1px solid #e2e8f0; }
+
+  @media(max-width:600px){ .grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <h1>Tendencias del <span>Pensamiento Administrativo</span></h1>
+    <p>Corrientes emergentes y desafíos del siglo XXI</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Innovación / Creatividad</div>
+        <h2>Administración de la Innovación</h2>
+        <div class="rep">A. Toffler · R. Gibson · P. Drucker · I. Nonaka</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Innovación como estrategia central</span><span class="tag">Creatividad como recurso</span><span class="tag">Cultura que fomenta ideas</span><span class="tag">Directivo gestor de innovación</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Innovación como factor de supervivencia organizacional · Gestión del talento creativo · Marco para la administración de la innovación</div>
+        </div>
+        <div class="ex">Laboratorios de innovación (labs), hackatones internos, intraemprendimiento como el 20% de tiempo libre de Google</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Globalización / Internacionalización</div>
+        <h2>Administración Global y de Negocios Internacionales</h2>
+        <div class="rep">H. Koontz · H. Weihrich · J. Daniels</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Pensamiento global</span><span class="tag">Competencia internacional</span><span class="tag">Entornos multiculturales</span><span class="tag">Exportación / Joint ventures / Franquicias</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Formas de internacionalización · Perfil del administrador global · Gestión en distintos entornos económicos, culturales y legales</div>
+        </div>
+        <div class="ex">McDonald's (franquicias), Mercado Libre (expansión regional) y PyMEs exportadoras que ingresan a mercados externos</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Diversidad / Cultura</div>
+        <h2>Administración de la Diversidad Cultural</h2>
+        <div class="rep">G. Hofstede · F. Trompenaars · R. Lewis</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Equipos multiculturales</span><span class="tag">Diferencias culturales como valor</span><span class="tag">Inclusión y equidad</span><span class="tag">Comunicación intercultural</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Dimensiones culturales de Hofstede · Modelos de gestión intercultural · Políticas de diversidad e inclusión organizacional</div>
+        </div>
+        <div class="ex">Multinacionales con equipos de distintas nacionalidades y empresas con políticas de equidad de género y diversidad</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Virtualidad / TICs</div>
+        <h2>Administración de la Virtualidad</h2>
+        <div class="rep">W. Davidow · M. Malone · T. Malone</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Organizaciones virtuales</span><span class="tag">Trabajo remoto</span><span class="tag">Equipos distribuidos</span><span class="tag">Deslocalización de funciones</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Concepto de organización virtual · Gestión de equipos remotos · Nuevas estructuras organizacionales habilitadas por tecnología</div>
+        </div>
+        <div class="ex">Empresas 100% remotas, plataformas colaborativas (GitHub, Notion, Slack), equipos distribuidos globalmente</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Valores / Ética</div>
+        <h2>Administración por Valores</h2>
+        <div class="rep">K. Blanchard · M. O'Connor · S. Covey</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Valores como eje de gestión</span><span class="tag">Alineación valores personales y org.</span><span class="tag">Ética empresarial</span><span class="tag">Liderazgo basado en valores</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Administración por Valores (APV) · Liderazgo ético · Modelos de cultura organizacional basados en valores compartidos</div>
+        </div>
+        <div class="ex">Empresas con códigos de ética, programas de RSE y liderazgo basado en valores como Patagonia</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Conocimiento / Capital intelectual</div>
+        <h2>Gestión del Conocimiento</h2>
+        <div class="rep">I. Nonaka · H. Takeuchi · P. Drucker · E. Serradell</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Conocimiento como recurso estratégico</span><span class="tag">Capital intelectual</span><span class="tag">Sociedad del conocimiento</span><span class="tag">Modelo SECI</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Modelo SECI (Nonaka) · Capital intelectual como ventaja competitiva · Herramientas: Skandia Navigator, Knowledge Practice Management</div>
+        </div>
+        <div class="ex">Empresas tecnológicas con bases de conocimiento internas, wikis corporativas y comunidades de práctica</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Emprendimiento / Innovación</div>
+        <h2>Cultura del Emprendimiento</h2>
+        <div class="rep">J. Schumpeter · P. Drucker · H. Stevenson</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Emprendimiento como motor de innovación</span><span class="tag">Intraemprendimiento</span><span class="tag">Riesgo calculado</span><span class="tag">Ecosistemas emprendedores</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Destrucción creativa (Schumpeter) · Emprendimiento como práctica de gestión · Ecosistemas emprendedores · Rol del Estado en el fomento empresarial</div>
+        </div>
+        <div class="ex">Incubadoras, aceleradoras, parques tecnológicos, programas universitarios de emprendimiento y startups de base tecnológica</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">Síntesis del Pensamiento Administrativo — Tendencias</div>
+</div>
+</body>
+</html>

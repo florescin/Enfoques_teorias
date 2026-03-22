@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enfoque Tradicional</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f0a2e;
+    --accent: #7c3aed;
+    --accent2: #a78bfa;
+    --light: #ede9fe;
+    --mid: #2d1b69;
+    --pill-bg: rgba(124,58,237,.3);
+    --pill-text: #ddd6fe;
+    --tag-bg: #ede9fe;
+    --tag-text: #5b21b6;
+    --border: rgba(167,139,250,.2);
+    --example-border: #7c3aed;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: #f0eeff; padding: 36px 20px; }
+  .wrapper { max-width: 1380px; margin: 0 auto; }
+
+  .header { text-align: center; margin-bottom: 48px; }
+  .header::before { content:''; display:block; width:100px; height:4px; background: linear-gradient(90deg,#7c3aed,#a78bfa); margin:0 auto 18px; border-radius:2px; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,50px); font-weight:900; color:#1e0a5e; letter-spacing:-1px; line-height:1.1; }
+  .header h1 span { background:linear-gradient(135deg,#7c3aed,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .header p { margin-top:10px; font-size:15px; color:#64748b; font-weight:300; }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; }
+
+  .card { border-radius:18px; overflow:hidden; box-shadow:0 4px 24px rgba(124,58,237,.1); display:flex; flex-direction:column; background:#fff; transition:transform .2s,box-shadow .2s; }
+  .card:hover { transform:translateY(-5px); box-shadow:0 14px 40px rgba(124,58,237,.18); }
+
+  .card-header { padding:22px 22px 16px; background:var(--bg); }
+  .foco-pill { display:inline-block; font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; padding:3px 11px; border-radius:20px; margin-bottom:10px; background:var(--pill-bg); color:var(--pill-text); }
+  .card-header h2 { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:#fff; line-height:1.25; }
+  .rep { font-size:10.5px; color:rgba(255,255,255,.5); margin-top:6px; font-weight:300; }
+
+  .card-body { padding:18px 20px 22px; display:flex; flex-direction:column; gap:14px; flex:1; }
+  .st { font-size:9px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:#94a3b8; margin-bottom:3px; }
+  .st-a { color:var(--accent); }
+  .body-text { font-size:12.5px; color:#334155; line-height:1.55; }
+  .tags { display:flex; flex-wrap:wrap; gap:5px; }
+  .tag { font-size:10.5px; padding:3px 10px; border-radius:20px; background:var(--tag-bg); color:var(--tag-text); font-weight:500; }
+  .ex { background:#f8fafc; border-left:3px solid var(--example-border); border-radius:0 8px 8px 0; padding:9px 12px; font-size:11.5px; color:#475569; line-height:1.5; font-style:italic; }
+
+  .footer { text-align:center; font-size:11px; color:#94a3b8; letter-spacing:1px; margin-top:48px; padding-top:16px; border-top:1px solid #e2e8f0; }
+
+  @media(max-width:600px){ .grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <h1>Enfoque <span>Tradicional</span></h1>
+    <p>Teorías clásicas del pensamiento administrativo</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Tareas</div>
+        <h2>Administración Científica</h2>
+        <div class="rep">F.W. Taylor · H. Gantt · Gilbreth</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Racionalización del trabajo</span><span class="tag">Tiempos y movimientos</span><span class="tag">Especialización obrera</span><span class="tag">Incentivos salariales</span><span class="tag">Supervisión funcional</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Organización racional del trabajo (ORT) · Métodos científicos de productividad · Base de la ingeniería industrial</div>
+        </div>
+        <div class="ex">Amazon: rutas cronometradas, metas de picking e incentivos por productividad en centros de distribución</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Estructura</div>
+        <h2>Teoría Clásica</h2>
+        <div class="rep">H. Fayol · J. Mooney</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">14 principios generales</span><span class="tag">Funciones básicas empresa</span><span class="tag">Proceso administrativo PODC</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Proceso administrativo vigente · Unidad de mando · Jerarquía y división del trabajo</div>
+        </div>
+        <div class="ex">Empresas con organigramas jerárquicos, manuales de funciones y áreas funcionales bien delimitadas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Personas</div>
+        <h2>Teoría Humanística</h2>
+        <div class="rep">Elton Mayo · M.P. Follet · Barnard · McGregor</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Ser humano como ser social</span><span class="tag">Grupos informales</span><span class="tag">Motivación y liderazgo</span><span class="tag">Condiciones psicológicas</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Primeras teorías de motivación y liderazgo · Comportamiento grupal · Reconocimiento de la dimensión humana</div>
+        </div>
+        <div class="ex">Programas de bienestar laboral, trabajo en equipo y encuestas de clima organizacional</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Resultados / Objetivos</div>
+        <h2>Teoría Neoclásica</h2>
+        <div class="rep">Koontz · O'Donnell · Drucker · Mintzberg</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Enfoque pragmático</span><span class="tag">Énfasis en resultados</span><span class="tag">Eclecticismo teórico</span><span class="tag">APO</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Administración por Objetivos (APO) · Diferenciación eficacia / eficiencia · Orientación a resultados concretos</div>
+        </div>
+        <div class="ex">Sistemas OKR (Objectives & Key Results) y evaluaciones de desempeño por metas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Normas / Estructura formal</div>
+        <h2>Teoría Burocrática</h2>
+        <div class="rep">Max Weber · R. Merton · P. Selznick · A. Downs</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Racionalidad y meritocracia</span><span class="tag">Normas escritas</span><span class="tag">Jerarquía formal</span><span class="tag">Roles impersonales</span><span class="tag">Profesionalización</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Modelo racional ideal de organización · Separación propiedad / gestión · Base del derecho administrativo</div>
+        </div>
+        <div class="ex">Organismos públicos, universidades y hospitales con reglamentos, concursos y procedimientos estandarizados</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Organización / Entorno</div>
+        <h2>Teoría Estructuralista</h2>
+        <div class="rep">L. Peter · N. Parkinson · Thompson · Etzioni</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Hombre organizacional</span><span class="tag">Concilia clásica y humana</span><span class="tag">Entorno como variable</span><span class="tag">Objetivos organizacionales</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Concepto de hombre organizacional (roles múltiples) · Eficacia medida por logro de objetivos · Introduce el entorno como factor</div>
+        </div>
+        <div class="ex">Profesionales con roles simultáneos: docentes que también son consultores o investigadores</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Personas / Decisiones</div>
+        <h2>Teoría del Comportamiento</h2>
+        <div class="rep">H. Simon · Barnard · Maslow · Likert · Argyris</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Toma de decisiones</span><span class="tag">Estilos administrativos</span><span class="tag">Motivación humana</span><span class="tag">Comportamiento organizacional</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Teoría de las decisiones · Jerarquía de necesidades de Maslow · Estilos de liderazgo (Likert) · Comportamiento organizacional</div>
+        </div>
+        <div class="ex">Políticas de desarrollo personal, gestión del desempeño y análisis de estilos de liderazgo</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Cambio / Cultura organizacional</div>
+        <h2>Desarrollo Organizacional (DO)</h2>
+        <div class="rep">Lawrence · Lorsch · Bennis · Schein · Bechard</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Cambio planeado</span><span class="tag">Cultura organizacional</span><span class="tag">Concepción dinámica</span><span class="tag">Analiza entorno e individuo</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Cambio organizacional planeado · Cultura como factor estratégico · Herramientas de diagnóstico y cambio</div>
+        </div>
+        <div class="ex">Transformaciones culturales, fusiones o reestructuraciones que trabajan el cambio con equipos y consultores</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Cuantificación / Decisiones</div>
+        <h2>Teoría Matemática / Cuantitativa</h2>
+        <div class="rep">R. Ackoff · H. Simon · C.W. Churchman</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Modelos matemáticos</span><span class="tag">Programación lineal</span><span class="tag">Investigación de operaciones</span><span class="tag">Simulación</span><span class="tag">Optimización</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">IO · Modelos de simulación y optimización · Herramientas cuantitativas para la toma de decisiones gerenciales</div>
+        </div>
+        <div class="ex">Empresas de logística con software de optimización de rutas, modelos de inventario y simulación de escenarios financieros</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Sistema / Entorno</div>
+        <h2>Teoría Sistémica</h2>
+        <div class="rep">Von Bertalanffy · D. Katz · R. Kahn · F. Kast · Rosenzweig</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">Sistema abierto</span><span class="tag">El todo afecta a la parte</span><span class="tag">Retroalimentación</span><span class="tag">Influencia del entorno externo</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Visión integral de la organización · Importancia del entorno · Base del pensamiento estratégico y la gestión sistémica</div>
+        </div>
+        <div class="ex">Empresas que realizan análisis FODA, monitorean competidores, proveedores y regulaciones del entorno</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="foco-pill">Contexto / Adaptación</div>
+        <h2>Teoría Situacional / Contingencias</h2>
+        <div class="rep">W. Hill · Thompson · Lawrence · Lorsch · T. Burns</div>
+      </div>
+      <div class="card-body">
+        <div><div class="st st-a">Características</div>
+          <div class="tags"><span class="tag">No hay teoría universal</span><span class="tag">Cada organización es única</span><span class="tag">Gestión adaptable al contexto</span></div>
+        </div>
+        <div><div class="st">Aportes clave</div>
+          <div class="body-text">Flexibilidad en la gestión · Reconocimiento de la complejidad organizacional · Adaptación como competencia clave del administrador</div>
+        </div>
+        <div class="ex">Startups que adaptan estructura y gestión según etapa de crecimiento, tamaño y mercado</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">Síntesis del Pensamiento Administrativo — Enfoque Tradicional</div>
+</div>
+</body>
+</html>
