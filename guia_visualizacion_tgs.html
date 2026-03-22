@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Visualización · TGS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f5f3ff;color:#1e1b4b;padding:0 0 80px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1e0a5e,#2d1b69,#0c2340);padding:48px 24px 40px;text-align:center}
+.hero-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#a78bfa;background:rgba(124,58,237,.25);padding:5px 16px;border-radius:20px;margin-bottom:16px;border:1px solid rgba(124,58,237,.3)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,42px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:10px}
+.hero h1 span{color:#a78bfa}
+.hero p{font-size:14px;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto 24px;line-height:1.65}
+.video-btn{display:inline-flex;align-items:center;gap:10px;background:#7c3aed;color:#fff;font-size:14px;font-weight:500;padding:13px 28px;border-radius:30px;text-decoration:none;transition:all .2s}
+.video-btn:hover{background:#6d28d9;transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,58,237,.4)}
+.video-btn span{font-size:18px}
+
+/* INSTRUCCIONES */
+.instrucciones{background:#fff;border-bottom:2px solid #ede9fe;padding:20px 24px;display:flex;align-items:flex-start;gap:14px;max-width:860px;margin:0 auto}
+.inst-icon{font-size:24px;flex-shrink:0}
+.inst-text{font-size:13px;color:#475569;line-height:1.6}
+.inst-text strong{color:#1e0a5e}
+
+/* MAIN */
+.main{max-width:860px;margin:0 auto;padding:32px 20px 0}
+
+/* SECTION */
+.section{margin-bottom:36px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.section-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
+.n1{background:#7c3aed}
+.n2{background:#0891b2}
+.n3{background:#059669}
+.n4{background:#dc2626}
+.n5{background:#d97706}
+.section-header h2{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#1e0a5e}
+.section-header p{font-size:12px;color:#94a3b8;margin-top:2px}
+
+/* NOTA PREVIA */
+.nota-previa{background:#ede9fe;border-left:4px solid #7c3aed;border-radius:0 10px 10px 0;padding:12px 16px;font-size:13px;color:#4c1d95;line-height:1.6;margin-bottom:16px}
+
+/* PREGUNTA */
+.pregunta{background:#fff;border-radius:14px;padding:20px 22px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid #e2e8f0}
+.pregunta-label{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#94a3b8;margin-bottom:6px}
+.pregunta-txt{font-size:14px;color:#1e293b;line-height:1.55;margin-bottom:12px;font-weight:500}
+.respuesta{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:13px;color:#334155;resize:vertical;min-height:80px;transition:border .2s;outline:none}
+.respuesta:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+.respuesta-corta{min-height:44px;resize:none}
+
+/* TABLA */
+.tabla-conceptos{width:100%;border-collapse:collapse;font-size:13px}
+.tabla-conceptos th{background:#1e0a5e;color:#fff;padding:10px 14px;text-align:left;font-weight:500;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.tabla-conceptos td{padding:10px 14px;border-bottom:1px solid #f1f5f9;color:#334155;vertical-align:top}
+.tabla-conceptos tr:nth-child(even) td{background:#f8fafc}
+.tabla-conceptos .celda-input{padding:6px 14px}
+.tabla-conceptos input[type=text]{width:100%;border:1.5px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-family:'DM Sans',sans-serif;font-size:13px;color:#334155;outline:none;transition:border .2s}
+.tabla-conceptos input[type=text]:focus{border-color:#7c3aed}
+
+/* CHECKBOXES */
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.check-item{display:flex;align-items:center;gap:9px;background:#f8fafc;border-radius:9px;padding:10px 13px;cursor:pointer;border:1.5px solid transparent;transition:all .15s}
+.check-item:hover{border-color:#c4b5fd;background:#faf5ff}
+.check-item input{width:16px;height:16px;accent-color:#7c3aed;cursor:pointer;flex-shrink:0}
+.check-item label{font-size:13px;color:#334155;cursor:pointer;line-height:1.4}
+
+/* REFLEXIÓN FINAL */
+.reflexion{background:linear-gradient(135deg,#1e0a5e,#0c2340);border-radius:18px;padding:28px 28px;color:#fff}
+.reflexion h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:6px}
+.reflexion p{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:18px;line-height:1.6}
+.reflexion textarea{width:100%;border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:13px;color:#fff;background:rgba(255,255,255,.08);resize:vertical;min-height:90px;outline:none;transition:border .2s}
+.reflexion textarea:focus{border-color:#a78bfa}
+.reflexion textarea::placeholder{color:rgba(255,255,255,.35)}
+
+/* FOOTER */
+.footer-inst{text-align:center;margin-top:36px;font-size:12px;color:#94a3b8;background:#fff;border-top:1px solid #e2e8f0;padding:20px;border-radius:16px}
+.footer-inst strong{color:#7c3aed}
+
+@media(max-width:600px){.check-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Clase Invertida · Actividad Previa</div>
+  <h1>Guía de <span>Visualización</span></h1>
+  <p>Antes de la clase vas a ver un video sobre la Teoría General de Sistemas. Esta guía te acompaña mientras lo mirás. Completá cada sección en orden.</p>
+  <a class="video-btn" href="https://youtu.be/ZWWWxFR0iEw" target="_blank">
+    <span>▶</span> Ver el video (YouTube)
+  </a>
+</div>
+
+<!-- INSTRUCCIONES -->
+<div class="instrucciones">
+  <div class="inst-icon">📋</div>
+  <div class="inst-text">
+    <strong>¿Cómo usar esta guía?</strong> Abrí el video en otra pestaña y volvé acá para ir respondiendo a medida que avanzás. No hay respuestas correctas o incorrectas — lo importante es que anotes lo que entendés con tus propias palabras. Llevá esta guía a clase: la usaremos como punto de partida.
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SECCIÓN 0: ANTES DE VER -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num n1">0</div>
+      <div>
+        <h2>Antes de ver el video</h2>
+        <p>Activá tus conocimientos previos</p>
+      </div>
+    </div>
+    <div class="nota-previa">📌 Respondé esto ANTES de dar play. No importa si no sabés la respuesta — es para que veas cómo cambia tu comprensión después del video.</div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Pregunta 1</div>
+      <div class="pregunta-txt">Cuando escuchás la palabra "sistema", ¿qué es lo primero que se te viene a la mente? Escribí al menos 3 ejemplos de sistemas que conozcas.</div>
+      <textarea class="respuesta" placeholder="Ej: el sistema solar, el sistema digestivo, el sistema operativo de una computadora..."></textarea>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Pregunta 2</div>
+      <div class="pregunta-txt">¿Qué creés que tiene en común un hospital, una empresa, el cuerpo humano y un aula? ¿Hay algo que los una?</div>
+      <textarea class="respuesta" placeholder="Escribí tu hipótesis antes de ver el video..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: MIENTRAS VES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num n2">1</div>
+      <div>
+        <h2>Mientras ves el video</h2>
+        <p>Completá a medida que avanza el contenido</p>
+      </div>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Concepto central</div>
+      <div class="pregunta-txt">Anotá la definición de sistema tal como la presenta el video, con tus propias palabras:</div>
+      <textarea class="respuesta" placeholder="Un sistema es..."></textarea>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Tabla de conceptos · Completá mientras ves</div>
+      <div class="pregunta-txt" style="margin-bottom:12px">El video menciona los componentes del sistema. Completá la tabla:</div>
+      <table class="tabla-conceptos">
+        <thead>
+          <tr>
+            <th style="width:30%">Componente</th>
+            <th style="width:35%">¿Qué es?</th>
+            <th style="width:35%">Ejemplo del video</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Entradas</strong></td>
+            <td class="celda-input"><input type="text" placeholder="Tu definición..."></td>
+            <td class="celda-input"><input type="text" placeholder="Ejemplo..."></td>
+          </tr>
+          <tr>
+            <td><strong>Proceso</strong></td>
+            <td class="celda-input"><input type="text" placeholder="Tu definición..."></td>
+            <td class="celda-input"><input type="text" placeholder="Ejemplo..."></td>
+          </tr>
+          <tr>
+            <td><strong>Salidas</strong></td>
+            <td class="celda-input"><input type="text" placeholder="Tu definición..."></td>
+            <td class="celda-input"><input type="text" placeholder="Ejemplo..."></td>
+          </tr>
+          <tr>
+            <td><strong>Retroalimentación</strong></td>
+            <td class="celda-input"><input type="text" placeholder="Tu definición..."></td>
+            <td class="celda-input"><input type="text" placeholder="Ejemplo..."></td>
+          </tr>
+          <tr>
+            <td><strong>Ambiente / Entorno</strong></td>
+            <td class="celda-input"><input type="text" placeholder="Tu definición..."></td>
+            <td class="celda-input"><input type="text" placeholder="Ejemplo..."></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Clasificación de sistemas</div>
+      <div class="pregunta-txt">El video distingue tipos de sistemas. Marcá los que menciona y anotá brevemente en qué se diferencian:</div>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox"><label>Sistema abierto</label></label>
+        <label class="check-item"><input type="checkbox"><label>Sistema cerrado</label></label>
+        <label class="check-item"><input type="checkbox"><label>Sistema dinámico</label></label>
+        <label class="check-item"><input type="checkbox"><label>Sistema estático</label></label>
+        <label class="check-item"><input type="checkbox"><label>Sistema homeostático</label></label>
+        <label class="check-item"><input type="checkbox"><label>Subsistema</label></label>
+      </div>
+      <textarea class="respuesta" style="margin-top:10px" placeholder="¿En qué se diferencia un sistema abierto de uno cerrado según el video?"></textarea>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Empresa como sistema</div>
+      <div class="pregunta-txt">El video usa una empresa como ejemplo. ¿Qué elementos identifica dentro de ella como partes del sistema?</div>
+      <textarea class="respuesta" placeholder="El líder, los subordinados..."></textarea>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Homeostasis</div>
+      <div class="pregunta-txt">El video menciona el concepto de homeostasis. ¿Cómo lo explicarías con tus propias palabras?</div>
+      <textarea class="respuesta" placeholder="La homeostasis es la capacidad de..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: DESPUÉS DEL VIDEO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num n3">2</div>
+      <div>
+        <h2>Después del video</h2>
+        <p>Procesá lo que viste</p>
+      </div>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Aplicación propia</div>
+      <div class="pregunta-txt">Elegí una organización o institución que conozcas (tu colegio, un hospital, un negocio, tu casa) e identificá sus componentes como sistema:</div>
+      <table class="tabla-conceptos" style="margin-bottom:0">
+        <thead><tr><th>Componente</th><th>¿Qué sería en tu ejemplo?</th></tr></thead>
+        <tbody>
+          <tr><td>La organización elegida</td><td class="celda-input"><input type="text" placeholder="Ej: Instituto ISDEM"></td></tr>
+          <tr><td>Entradas</td><td class="celda-input"><input type="text" placeholder="¿Qué ingresa al sistema?"></td></tr>
+          <tr><td>Proceso</td><td class="celda-input"><input type="text" placeholder="¿Qué transforma?"></td></tr>
+          <tr><td>Salidas</td><td class="celda-input"><input type="text" placeholder="¿Qué produce?"></td></tr>
+          <tr><td>Retroalimentación</td><td class="celda-input"><input type="text" placeholder="¿Cómo sabe si lo está haciendo bien?"></td></tr>
+          <tr><td>Ambiente / Entorno</td><td class="celda-input"><input type="text" placeholder="¿Qué lo rodea e influye?"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Conexión con tu carrera</div>
+      <div class="pregunta-txt">Como futuro Técnico en Análisis de Sistemas Informáticos, ¿de qué te sirve entender la Teoría General de Sistemas? Escribí al menos dos ideas.</div>
+      <textarea class="respuesta" placeholder="Me sirve para..."></textarea>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Comparación antes/después</div>
+      <div class="pregunta-txt">Volvé a leer lo que escribiste en la Sección 0 (antes del video). ¿Cambió tu idea sobre qué es un sistema? ¿En qué?</div>
+      <textarea class="respuesta" placeholder="Antes pensaba que... Ahora entiendo que..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: DUDAS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num n4">3</div>
+      <div>
+        <h2>Mis dudas para la clase</h2>
+        <p>Lo que quedó sin entender</p>
+      </div>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Dudas y preguntas</div>
+      <div class="pregunta-txt">Anotá todo lo que no entendiste, lo que te generó dudas o lo que querés profundizar en clase. Cuanto más específico seas, mejor podemos trabajarlo.</div>
+      <textarea class="respuesta" style="min-height:110px" placeholder="No entendí bien la diferencia entre... / Me quedó la duda de... / Quisiera saber más sobre..."></textarea>
+    </div>
+
+    <div class="pregunta">
+      <div class="pregunta-label">Lo más interesante</div>
+      <div class="pregunta-txt">¿Qué fue lo que más te llamó la atención del video?</div>
+      <textarea class="respuesta respuesta-corta" placeholder="Lo que más me llamó la atención fue..."></textarea>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN FINAL -->
+  <div class="reflexion">
+    <h3>✍️ Reflexión final</h3>
+    <p>Antes de cerrar esta guía, escribí en 3 o 4 oraciones qué es un sistema con tus propias palabras. Imaginá que se lo tenés que explicar a alguien que nunca escuchó el término.</p>
+    <textarea placeholder="Un sistema es... Se compone de... Lo que lo diferencia de una simple suma de partes es..."></textarea>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-inst">
+    <strong>Llevá esta guía a clase</strong> — la usaremos como punto de partida para el debate y las actividades. No hace falta que esté "perfecta": lo importante es que hayas pensado sobre el tema.<br>
+    <span style="margin-top:6px;display:block">📧 Si tenés dudas urgentes antes de la clase, podés contactar a la profesora.</span>
+  </div>
+
+</div>
+</body>
+</html>
