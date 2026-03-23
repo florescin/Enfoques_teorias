@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6 Sistemas · Pozo Navarro</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f8f7ff;color:#1e1b4b;padding:32px 20px 52px}
+.wrapper{max-width:1100px;margin:0 auto}
+
+.header{text-align:center;margin-bottom:36px}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#534AB7;background:#EEEDFE;padding:6px 18px;border-radius:20px;margin-bottom:12px;border:1px solid #AFA9EC}
+.header h1{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,40px);font-weight:900;color:#1e0a5e;line-height:1.1;letter-spacing:-1px;margin-bottom:8px}
+.header p{font-size:15px;color:#475569;line-height:1.6}
+
+/* EMPRESA CONTENEDOR */
+.empresa{border:2px solid #B4B2A9;border-radius:20px;background:#faf9f7;padding:28px 24px 24px;position:relative}
+.empresa-label{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#faf9f7;padding:0 16px}
+.empresa-label span{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#444441}
+
+/* FILAS */
+.fila{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+
+/* TARJETAS */
+.card{border-radius:14px;overflow:hidden;border:1.5px solid;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px)}
+.card-top{padding:16px 16px 12px}
+.card-icon{font-size:22px;margin-bottom:8px}
+.card-nombre{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;line-height:1.2;margin-bottom:4px}
+.card-desc{font-size:13px;line-height:1.45;opacity:.8}
+
+/* COLORES POR SISTEMA */
+.purple{border-color:#AFA9EC;background:#fff}
+.purple .card-top{background:#EEEDFE}
+.purple .card-nombre{color:#26215C}
+.purple .card-desc{color:#534AB7}
+.purple:hover{box-shadow:0 8px 24px rgba(127,119,221,.2)}
+
+.blue{border-color:#85B7EB;background:#fff}
+.blue .card-top{background:#E6F1FB}
+.blue .card-nombre{color:#042C53}
+.blue .card-desc{color:#185FA5}
+.blue:hover{box-shadow:0 8px 24px rgba(55,138,221,.2)}
+
+.teal{border-color:#5DCAA5;background:#fff}
+.teal .card-top{background:#E1F5EE}
+.teal .card-nombre{color:#04342C}
+.teal .card-desc{color:#0F6E56}
+.teal:hover{box-shadow:0 8px 24px rgba(29,158,117,.2)}
+
+/* FLECHA ENTRE FILAS */
+.flecha-centro{text-align:center;padding:4px 0;color:#7F77DD;font-size:18px}
+
+/* FRANJA PA */
+.pa-franja{border:1.5px dashed #B4B2A9;border-radius:12px;padding:12px 18px;text-align:center;margin-top:6px}
+.pa-titulo{font-size:14px;font-weight:500;color:#444441;margin-bottom:4px}
+.pa-items{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pa-pill{font-size:12px;font-weight:500;padding:4px 12px;border-radius:20px;background:#EEEDFE;color:#534AB7;border:1px solid #AFA9EC}
+
+/* PANEL DETALLE */
+.detail{margin-top:20px;border-radius:14px;padding:20px 24px;border:1.5px solid #e2e8f0;background:#fff;min-height:100px;transition:all .25s}
+.detail-hidden{opacity:.4}
+.detail h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:8px}
+.detail p{font-size:14px;color:#475569;line-height:1.7}
+.detail-hint{font-size:13px;color:#94a3b8;font-style:italic;text-align:center;padding:12px 0}
+
+/* LEYENDA */
+.leyenda{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.ley-item{display:flex;align-items:center;gap:7px;font-size:13px;color:#475569}
+.ley-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.ld-purple{background:#AFA9EC}
+.ld-blue{background:#85B7EB}
+.ld-teal{background:#5DCAA5}
+
+.footer{text-align:center;margin-top:28px;font-size:12px;color:#94a3b8;letter-spacing:.5px}
+
+@media(max-width:600px){.fila{grid-template-columns:1fr}.pa-items{flex-direction:column;align-items:center}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="tag">TGS · Unidad 1.2 · Pozo Navarro</div>
+    <h1>Los 6 sistemas que componen la empresa</h1>
+    <p>Hacé clic en cada sistema para ver su función</p>
+  </div>
+
+  <div class="empresa">
+    <div class="empresa-label"><span>La empresa como sistema</span></div>
+
+    <!-- FILA SUPERIOR -->
+    <div class="fila">
+      <div class="card purple" onclick="mostrar('decision')">
+        <div class="card-top">
+          <div class="card-nombre">Sistema de Decisión</div>
+          <div class="card-desc">Proceso de toma de decisiones</div>
+        </div>
+      </div>
+      <div class="card purple" onclick="mostrar('planeacion')">
+        <div class="card-top">
+          <div class="card-nombre">Sistema de Planeación</div>
+          <div class="card-desc">Define objetivos y planes</div>
+        </div>
+      </div>
+      <div class="card purple" onclick="mostrar('control')">
+        <div class="card-top">
+          <div class="card-nombre">Sistema de Control</div>
+          <div class="card-desc">Compara plan vs. realidad</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flecha-centro">↕</div>
+
+    <!-- FILA INFERIOR -->
+    <div class="fila">
+      <div class="card blue" onclick="mostrar('informacion')">
+        <div class="card-top">
+          <div class="card-nombre">Sistema de Información</div>
+          <div class="card-desc">Datos y comunicación interna</div>
+        </div>
+      </div>
+      <div class="card teal" onclick="mostrar('recursos')">
+        <div class="card-top">
+          <div class="card-nombre">Sistema de Recursos</div>
+          <div class="card-desc">Personas, dinero, materiales</div>
+        </div>
+      </div>
+      <div class="card teal" onclick="mostrar('operativo')">
+        <div class="card-top">
+          <div class="card-nombre">Sistema Operativo</div>
+          <div class="card-desc">Ejecución de procesos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRANJA PA -->
+    <div class="pa-franja">
+      <div class="pa-titulo">Proceso Administrativo contenido en esta estructura</div>
+      <div class="pa-items">
+        <span class="pa-pill">Planeación</span>
+        <span class="pa-pill">Organización</span>
+        <span class="pa-pill">Dirección</span>
+        <span class="pa-pill">Control</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL DETALLE -->
+  <div class="detail detail-hidden" id="detail">
+    <div class="detail-hint">Hacé clic en cualquier sistema para ver su descripción</div>
+  </div>
+
+  <!-- LEYENDA -->
+  <div class="leyenda">
+    <div class="ley-item"><div class="ley-dot ld-purple"></div>Sistemas de gestión</div>
+    <div class="ley-item"><div class="ley-dot ld-blue"></div>Sistema de información</div>
+    <div class="ley-item"><div class="ley-dot ld-teal"></div>Sistemas operativos</div>
+  </div>
+
+  <div class="footer">Sistemas Administrativos y de Información · ISDEM · Mg. Prof. Ing. Cinthia V. Flores Yañez · Basado en Pozo Navarro, La Dirección por Sistemas</div>
+</div>
+
+<script>
+const data = {
+  decision: {
+    color: '#26215C',
+    titulo: 'Sistema de Decisión',
+    texto: 'Es el punto de partida de todo el proceso. Toda decisión que se toma dentro de la empresa — desde la más simple hasta la más estratégica — sale de este sistema. Por definición, una decisión es un plan a ejecutar. Por eso, las salidas del Sistema de Decisión son la entrada del Sistema de Planeación. Sin decisión, no hay proceso administrativo posible.'
+  },
+  planeacion: {
+    color: '#26215C',
+    titulo: 'Sistema de Planeación',
+    texto: 'Recibe la decisión tomada y la desglosa en objetivos menores, más pequeños y manejables. Responde las preguntas del qué, cómo, quién, cuándo, dónde y con qué. Sus salidas — los planes — son las entradas del Sistema de Recursos (que consigue lo necesario) y del Sistema Operativo (que ejecuta). Si el Sistema de Control detecta desvíos, la Planeación ajusta el plan.'
+  },
+  control: {
+    color: '#26215C',
+    titulo: 'Sistema de Control',
+    texto: 'Compara de forma permanente el plan contra la realidad. Detecta desvíos y los comunica al Sistema de Planeación para que actúe. Para funcionar necesita que los planes sean mensurables — sin unidad de medida no hay control posible. Es el sistema que cierra el ciclo y genera la retroalimentación. Para el analista de sistemas, es el que más necesita información precisa y en tiempo real.'
+  },
+  informacion: {
+    color: '#042C53',
+    titulo: 'Sistema de Información',
+    texto: 'Es el sistema transversal que alimenta a todos los demás. Captura, procesa, almacena y distribuye la información que necesitan los otros cinco sistemas para funcionar. Sin información, ningún sistema puede tomar decisiones, planear, controlar ni operar. Es el campo de trabajo del Técnico en Análisis de Sistemas Informáticos: diseñar y mejorar este sistema es nuestra incumbencia profesional.'
+  },
+  recursos: {
+    color: '#04342C',
+    titulo: 'Sistema de Recursos',
+    texto: 'Consigue y organiza todo lo necesario para que el plan se pueda ejecutar: personas, dinero, tiempo, equipos y materiales. Actúa después de la Planeación y antes de que comience la Dirección. También interviene cada vez que hay un ajuste: cualquier cambio en el plan requiere reorganizar recursos antes de continuar.'
+  },
+  operativo: {
+    color: '#04342C',
+    titulo: 'Sistema Operativo',
+    texto: 'Es donde ocurre la ejecución real de los planes. Contiene todos los procesos administrativos e informáticos que hacen funcionar a la empresa día a día. Recibe las directivas del Sistema de Planeación a través del proceso de Dirección y las lleva a cabo con los recursos disponibles. Es el sistema más visible: es lo que el cliente ve, lo que produce los resultados y genera las salidas de la empresa.'
+  }
+};
+
+function mostrar(key) {
+  const d = data[key];
+  const panel = document.getElementById('detail');
+  panel.classList.remove('detail-hidden');
+  panel.style.borderColor = d.color + '44';
+  panel.style.background = '#fff';
+  panel.innerHTML = `<h3 style="color:${d.color}">${d.titulo}</h3><p>${d.texto}</p>`;
+  document.querySelectorAll('.card').forEach(c => c.style.opacity = '0.6');
+  event.currentTarget.style.opacity = '1';
+  event.currentTarget.style.transform = 'translateY(-4px)';
+}
+</script>
+</body>
+</html>
