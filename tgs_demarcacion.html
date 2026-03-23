@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demarcación de sistemas · TGS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f8f7ff;color:#1e1b4b;padding:36px 20px 60px}
+.wrapper{max-width:1200px;margin:0 auto}
+
+.header{text-align:center;margin-bottom:40px}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#534AB7;background:#EEEDFE;padding:6px 18px;border-radius:20px;margin-bottom:14px;border:1px solid #AFA9EC}
+.header h1{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,46px);font-weight:900;color:#1e0a5e;line-height:1.1;letter-spacing:-1px;margin-bottom:10px}
+.header h1 span{color:#7c3aed}
+.header p{font-size:16px;color:#475569;max-width:640px;margin:0 auto;line-height:1.7}
+
+.btns{display:flex;gap:12px;justify-content:center;margin-bottom:36px;flex-wrap:wrap}
+.btn{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;padding:11px 26px;border-radius:30px;border:1.5px solid #cbd5e1;background:#fff;color:#475569;cursor:pointer;transition:all .2s}
+.btn:hover{border-color:#7c3aed;color:#4c1d95;background:#f5f3ff}
+.btn.act-a{background:#EEEDFE;border-color:#7F77DD;color:#26215C}
+.btn.act-b{background:#E1F5EE;border-color:#1D9E75;color:#04342C}
+.btn.act-c{background:#FAEEDA;border-color:#BA7517;color:#412402}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+
+.panel{border-radius:16px;overflow:hidden;border:1.5px solid #e2e8f0;background:#fff}
+.ph{padding:16px 22px 14px}
+.ph-a{background:#EEEDFE;border-bottom:1.5px solid #AFA9EC}
+.ph-b{background:#E1F5EE;border-bottom:1.5px solid #5DCAA5}
+.ph-quien{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.ph-a .ph-quien{color:#534AB7}
+.ph-b .ph-quien{color:#0F6E56}
+.ph-obj{font-size:15px;font-weight:500;line-height:1.4}
+.ph-a .ph-obj{color:#26215C}
+.ph-b .ph-obj{color:#04342C}
+
+.pb{padding:18px 20px 22px;display:flex;flex-direction:column;gap:12px}
+
+.level{border-radius:12px;padding:14px 18px;border:1.5px solid}
+.level-lbl{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.level-name{font-size:18px;font-weight:500;margin-bottom:4px;line-height:1.2}
+.level-desc{font-size:14px;line-height:1.5}
+
+.lv-meta{background:#F1EFE8;border-color:#B4B2A9}
+.lv-meta .level-lbl{color:#5F5E5A}
+.lv-meta .level-name{color:#2C2C2A}
+.lv-meta .level-desc{color:#5F5E5A}
+
+.lv-sys-a{background:#EEEDFE;border-color:#7F77DD}
+.lv-sys-a .level-lbl{color:#534AB7}
+.lv-sys-a .level-name{color:#26215C}
+.lv-sys-a .level-desc{color:#534AB7}
+
+.lv-sys-b{background:#E1F5EE;border-color:#1D9E75}
+.lv-sys-b .level-lbl{color:#0F6E56}
+.lv-sys-b .level-name{color:#04342C}
+.lv-sys-b .level-desc{color:#0F6E56}
+
+.lv-sub-a{background:#E6F1FB;border-color:#85B7EB;margin-left:20px}
+.lv-sub-a .level-lbl{color:#185FA5}
+.lv-sub-a .level-name{color:#042C53}
+.lv-sub-a .level-desc{color:#185FA5}
+
+.lv-sub-b{background:#FAEEDA;border-color:#EF9F27;margin-left:20px}
+.lv-sub-b .level-lbl{color:#854F0B}
+.lv-sub-b .level-name{color:#412402}
+.lv-sub-b .level-desc{color:#854F0B}
+
+.conclusion{background:#fff;border-radius:14px;padding:20px 26px;border-left:5px solid #7c3aed;font-size:16px;color:#334155;line-height:1.75;border-top:1.5px solid #e2e8f0;border-right:1.5px solid #e2e8f0;border-bottom:1.5px solid #e2e8f0}
+.conclusion strong{color:#4c1d95;font-weight:500}
+
+.footer{text-align:center;margin-top:40px;font-size:13px;color:#94a3b8;letter-spacing:.5px}
+
+@media(max-width:640px){.grid{grid-template-columns:1fr}.lv-sub-a,.lv-sub-b{margin-left:10px}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="tag">TGS · Unidad 1.2 · Demarcación</div>
+    <h1>El analista decide dónde<br><span>trazar la línea</span></h1>
+    <p>El mismo hospital. Dos analistas con objetivos distintos. Cada uno delimita el sistema en un lugar diferente — y los dos tienen razón.</p>
+  </div>
+
+  <div class="btns">
+    <button class="btn act-a" id="btn-A" onclick="show('A')">Hospital completo</button>
+    <button class="btn" id="btn-B" onclick="show('B')">Área de Guardia</button>
+    <button class="btn" id="btn-C" onclick="show('C')">Sistema de turnos</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="conclusion" id="conclusion"></div>
+
+  <div class="footer">Sistemas Administrativos y de Información · ISDEM · Mg. Prof. Ing. Cinthia V. Flores Yañez</div>
+</div>
+
+<script>
+const casos = {
+  A: {
+    a: {
+      quien: 'Analista A',
+      objetivo: 'Rediseñar la gestión integral del hospital',
+      meta:  { name: 'Ministerio de Salud + obra social', desc: 'Financia, regula y condiciona el funcionamiento' },
+      sys:   { name: 'Hospital completo', desc: 'Todo lo que ocurre dentro del establecimiento' },
+      subs:  [
+        { name: 'Guardia', desc: 'Atención de urgencias' },
+        { name: 'Internación', desc: 'Pacientes hospitalizados' },
+        { name: 'Sistema de turnos', desc: 'Agendamiento y citas' },
+      ]
+    },
+    b: {
+      quien: 'Analista B',
+      objetivo: 'Optimizar los tiempos de espera en Guardia',
+      meta:  { name: 'Hospital completo', desc: 'El contexto que rodea y abastece a Guardia' },
+      sys:   { name: 'Área de Guardia', desc: 'Foco del análisis: donde ocurre el problema' },
+      subs:  [
+        { name: 'Triage', desc: 'Clasificación de urgencias' },
+        { name: 'Consultorio', desc: 'Atención médica directa' },
+        { name: 'Farmacia interna', desc: 'Dispensación de medicamentos' },
+      ]
+    },
+    cierre: 'El Analista A ve al hospital como su <strong>sistema bajo análisis</strong>. El Analista B ve al mismo hospital como <strong>metasistema</strong>. El Área de Guardia es subsistema para uno y sistema para el otro. Los dos tienen razón — cada uno delimitó según su objetivo de análisis.'
+  },
+  B: {
+    a: {
+      quien: 'Analista A',
+      objetivo: 'Mejorar el flujo completo de Guardia',
+      meta:  { name: 'Hospital completo', desc: 'Provee recursos, personal y financiamiento' },
+      sys:   { name: 'Área de Guardia', desc: 'Todo lo que ocurre en el área de urgencias' },
+      subs:  [
+        { name: 'Triage', desc: 'Recibe y clasifica pacientes' },
+        { name: 'Consultorio', desc: 'Diagnóstico y tratamiento' },
+        { name: 'Registro de pacientes', desc: 'Historia clínica y datos' },
+      ]
+    },
+    b: {
+      quien: 'Analista B',
+      objetivo: 'Digitalizar solo el sistema de triage',
+      meta:  { name: 'Área de Guardia', desc: 'El entorno inmediato del Triage' },
+      sys:   { name: 'Sistema de Triage', desc: 'Foco: clasificación y prioridad de pacientes' },
+      subs:  [
+        { name: 'Escala de prioridad', desc: 'Criterios de clasificación' },
+        { name: 'Registro de llegada', desc: 'Hora y motivo de consulta' },
+        { name: 'Derivación', desc: 'Hacia qué consultorio va' },
+      ]
+    },
+    cierre: 'Bajamos un nivel. Guardia es <strong>sistema</strong> para el Analista A y <strong>metasistema</strong> para el Analista B. El Triage — antes subsistema — se convierte en el nuevo foco. La línea se trazó más adentro, sobre la misma organización.'
+  },
+  C: {
+    a: {
+      quien: 'Analista A',
+      objetivo: 'Integrar turnos con historia clínica digital',
+      meta:  { name: 'Hospital completo', desc: 'Contexto general de todos los sistemas' },
+      sys:   { name: 'Sistema de turnos', desc: 'Gestión completa de agendamiento' },
+      subs:  [
+        { name: 'Agenda médica', desc: 'Disponibilidad por especialidad' },
+        { name: 'Confirmación de turno', desc: 'SMS, email, app móvil' },
+        { name: 'Registro de ausencias', desc: 'No-shows y reprogramaciones' },
+      ]
+    },
+    b: {
+      quien: 'Analista B',
+      objetivo: 'Resolver solo el problema de no-shows',
+      meta:  { name: 'Sistema de turnos', desc: 'El contexto del módulo de ausencias' },
+      sys:   { name: 'Módulo de no-shows', desc: 'Foco: pacientes que no asisten a su turno' },
+      subs:  [
+        { name: 'Detección de ausencia', desc: 'Turno vs. asistencia real' },
+        { name: 'Notificación automática', desc: 'Alerta al paciente y al médico' },
+        { name: 'Reasignación de slot', desc: 'Liberar el turno para otro' },
+      ]
+    },
+    cierre: 'El sistema de turnos es <strong>sistema</strong> para el Analista A y <strong>metasistema</strong> para el Analista B. Dos alcances distintos — y presupuestos de desarrollo también distintos — sobre la misma organización.'
+  }
+};
+
+function panel(d, tag) {
+  const sc = tag==='a' ? 'lv-sys-a' : 'lv-sys-b';
+  const bc = tag==='a' ? 'lv-sub-a' : 'lv-sub-b';
+  return `
+    <div class="panel">
+      <div class="ph ph-${tag}">
+        <div class="ph-quien">${d.quien}</div>
+        <div class="ph-obj">Objetivo: ${d.objetivo}</div>
+      </div>
+      <div class="pb">
+        <div class="level lv-meta">
+          <div class="level-lbl">Metasistema</div>
+          <div class="level-name">${d.meta.name}</div>
+          <div class="level-desc">${d.meta.desc}</div>
+        </div>
+        <div class="level ${sc}">
+          <div class="level-lbl">Sistema bajo análisis</div>
+          <div class="level-name">${d.sys.name}</div>
+          <div class="level-desc">${d.sys.desc}</div>
+        </div>
+        ${d.subs.map(s=>`
+          <div class="level ${bc}">
+            <div class="level-lbl">Subsistema</div>
+            <div class="level-name">${s.name}</div>
+            <div class="level-desc">${s.desc}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function show(k) {
+  document.querySelectorAll('.btn').forEach(b => b.className='btn');
+  document.getElementById('btn-'+k).classList.add('act-'+k.toLowerCase());
+  const c = casos[k];
+  document.getElementById('grid').innerHTML = panel(c.a,'a') + panel(c.b,'b');
+  document.getElementById('conclusion').innerHTML = c.cierre;
+}
+
+show('A');
+</script>
+</body>
+</html>
